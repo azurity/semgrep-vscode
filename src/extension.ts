@@ -202,11 +202,13 @@ export class SearchResult extends vscode.TreeItem {
 
 export class Finding extends vscode.TreeItem {
   constructor(
-    public readonly label: string,
+    public label: string,
     public readonly collapsibleState: vscode.TreeItemCollapsibleState,
     public readonly command?: vscode.Command
   ) {
-    super(label, collapsibleState);
+    super(label.split('\n')[0], collapsibleState);
+    this.tooltip = label;
+    this.label = label.split('\n')[0];
     this.contextValue = "finding";
   }
 }
