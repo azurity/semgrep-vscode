@@ -20,13 +20,13 @@
     "*"
   ],
   "publisher": "Semgrep",
-  "repository": "https://github.com/returntocorp/semgrep-vscode",
+  "repository": "https://github.com/azurity/semgrep-vscode",
   "icon": "semgrep-icon.png",
   "galleryBanner": {
     "color": "#ffffff",
     "theme": "light"
   },
-  "qna": "https://r2c.dev/slack",
+  "qna": false,
   "main": "./out/src/extension.js",
   "contributes": {
     "viewsContainers": {
@@ -38,20 +38,37 @@
         }
       ]
     },
+    "views": {
+      "semgrep-explorer": [
+        {
+          "id": "semgrepTreeView",
+          "name": "semgrepTreeView"
+        }
+      ]
+    },
     "commands": [
-      {
-        "command": "semgrep.login",
-        "title": "Semgrep: Login"
-      },
-      {
-        "command": "semgrep.scan",
-        "title": "Semgrep: Scan file"
-      },
       {
         "command": "semgrep.scanWorkspace",
         "title": "Semgrep: Scan workspace"
+      },
+      {
+        "command": "semgrep.remove",
+        "title": "remove semgrep item",
+        "icon": {
+          "light": "icons/light/trash.svg",
+          "dark": "icons/dark/trash.svg"
+        }
       }
     ],
+    "menus": {
+      "view/item/context": [
+        {
+          "command": "semgrep.remove",
+          "group": "inline",
+          "when": "viewItem == 'finding'"
+        }
+      ]
+    },
     "configuration": {
       "title": "Semgrep",
       "properties": {
